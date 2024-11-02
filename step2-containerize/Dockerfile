@@ -1,13 +1,11 @@
 FROM python:3.9
 
-ARG APPDIR ../step1-dev
-
 WORKDIR /code
 
-COPY $APPDIR/requirements.txt /code/requirements.txt
+COPY ../step1-dev/requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-COPY $APPDIR /code/app
+COPY ../step1-dev/main.py /code/app/main.py
 
-CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--port", "8080"]
